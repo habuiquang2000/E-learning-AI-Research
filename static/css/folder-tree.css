@@ -1,0 +1,193 @@
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.tree-root {
+  clear: both;
+
+  cursor: pointer;
+  user-select: none;
+}
+
+.tree-root .tree-node {
+  position: relative;
+}
+
+.tree-root .tree-node .tree-title{
+  font-weight: bold;
+  font-size: 0.88rem;
+}
+
+.tree-root .tree-node .tree-root {
+  padding-left: 2.5rem;
+}
+
+/* .tree-root .tree-node  .active {
+  color: red;
+  font-weight: bold;
+  vertical-align: middle;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  display: inline-block;
+  max-width: calc(100% - 50px);
+  vertical-align: top;
+  font-size: 1rem;
+} */
+
+.tree-root .tree-node .tree__title-number {
+  display: inline-block;
+  text-align: center;
+  min-width: 2.5rem;
+  background: #333;
+  color: #fff;
+  padding: 0.2rem 0.52rem;
+  margin-right: 0.25rem;
+}
+
+.tree-root .tree-node.root:not(.child) > div > .tree__title-number:after {
+  content: "";
+  position: absolute;
+  width: 1px;
+  background-color: #939393;
+  top: 5px;
+  left: 12px;
+  z-index: -1;
+  height: 100%;
+}
+
+.tree-root .tree-node:last-child .tree__title-number:after {
+  height: calc(100% - 28px) !important;
+}
+
+.tree-root .tree-node {
+  padding: 4px 0;
+}
+
+/* .tree-root .tree-node .tree__title-number {
+  position: relative;
+} */
+
+/* .tree-root ol li a {
+  color: #000;
+  font-weight: normal;
+} */
+
+.tree-root .tree-node .tree-root .tree__title-number {
+  background-color: #666;
+  /* min-width: 24px; */
+  /* padding-left: 0px; */
+  /* padding-right: 0px; */
+  /* text-align: center; */
+  /* padding: 2px 8px; */
+  /* margin-right: 4px; */
+  color: #fff;
+  /* font-weight: 700; */
+  /* font-size: 12px; */
+  /* display: inline-block; */
+  /* vertical-align: middle; */
+}
+
+.tree-root .tree-node:not(.root) .tree__title-number:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 100%;
+  margin: auto;
+  width: 28px;
+  height: 1px;
+  background-color: #939393;
+  animation: line-horizontal 0.75s ease-in-out;
+}
+
+@keyframes line-horizontal {
+  from {
+    right: 0%;
+  }
+
+  to {
+    right: 100%;
+  }
+}
+
+/* .tree-root .tree-node > .tree-title:not(.glyphicon):hover,
+.tree-root .tree-node > .tree-title:not(.glyphicon):hover ~ .tree-title:not(.glyphicon),
+.tree-root .tree-node > .tree-title:not(.glyphicon):hover ~ .tree-root .tree-node div:not(.glyphicon),
+.tree-root .tree-node > .tree-title:not(.glyphicon):hover + .tree-root .tree-node div:not(.glyphicon) {
+  background: #eee;
+  border: 1px solid #999;
+  padding: 3px 8px;
+  color: #000;
+  transition: all 10s ease-out;
+} */
+
+/* .tree {
+  min-height: 20px;
+  padding: 19px;
+  margin-bottom: 20px;
+  background-color: #fbfbfb;
+  border: 1px solid #999;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+.tree li {
+  list-style-type: none;
+  margin: 0;
+  padding: 10px 5px 0 5px;
+  position: relative;
+}
+.tree li::before,
+.tree li::after {
+  content: "";
+  left: -20px;
+  position: absolute;
+  right: auto;
+}
+.tree li::before {
+  border-left: 1px solid #999;
+  bottom: 50px;
+  height: 100%;
+  top: 0;
+  width: 1px;
+}
+.tree li::after {
+  border-top: 1px solid #999;
+  height: 20px;
+  top: 25px;
+  width: 25px;
+}
+.tree li span:not(.glyphicon) {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  padding: 4px 9px;
+  text-decoration: none;
+}
+.tree li.parent_li > span:not(.glyphicon) {
+  cursor: pointer;
+}
+.tree > ul > li::before,
+.tree > ul > li::after {
+  border: 0;
+}*/
+/* .tree-root li:last-child::before {
+  height: 30px;
+} */

@@ -1,0 +1,12 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block breadcrumbs %}<div class="breadcrumbs"><a href="{% url 'admin:index' %}">{% trans 'Trang chủ' %}</a></div>{% endblock %}
+
+{% block content %}
+
+<p>{% trans "Đăng xuất thành công." %}</p>
+
+<p><a href="{% url 'admin:index' %}">{% trans 'Đăng nhập' %}</a></p>
+
+{% endblock %}

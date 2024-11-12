@@ -1,0 +1,166 @@
+{% extends 'user/partials/base.html' %}
+{% load static %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/folder-tree.css' %}" />
+{% endblock %}
+{% block content %}
+  <!-- bradcam_area -->
+  <div class="bradcam_area bradcam_bg_2">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="bradcam_text text-center">
+            <h3>Tài liệu: {{ doc.title }}</h3>
+            <div class="course-sidebar-text-box">
+              <div class="buy-btns">
+                <a class="button button-contactForm btn_4 boxed-btn2" href="#section_content">Xem chi tiết</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- bradcam_area -->
+
+  <!-- ================Blog Area ================= -->
+  <section class="blog_area single-post-area section-padding" id="section_content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-9 posts-list">
+          <div class="single-post">
+            <h1>Giới thiệu tài liệu</h1>
+            <div class="">
+              <img src="{{ doc.image.url }}" alt="" class="img-fluid" />
+            </div>
+            <div class="blog_details">
+              {% comment %} {% endcomment %}
+              <div id="folder-tree">
+                <!-- This is a react root node -->
+              </div>
+              {% comment %} {{ doc.description|safe }} {% endcomment %}
+            </div>
+          </div>
+          <div class="blog-author">
+            <div class="media align-items-center">
+              <img src="/media/avatar/9.jpg" alt="" />
+              <div class="media-body">
+                <a href="#"><h4>ANM</h4></a>
+                <p>sinh viên khoa công nghệ thông tin</p>
+              </div>
+            </div>
+          </div>
+          <div class="comments-area">
+            <h4>01 Nhận xét</h4>
+            <div class="comment-list">
+              <div class="single-comment justify-content-between d-flex">
+                <div class="user justify-content-between d-flex">
+                  <div class="thumb">
+                    <img src="{% static 'home/img/comment/comment_1.png' %}" alt="" />
+                  </div>
+                  <div class="desc">
+                    <p class="comment">Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident sequi, minus cupiditate at architecto voluptates autem voluptatem repudiandae maiores accusamus excepturi nemo inventore! Laboriosam magnam aliquid, praesentium voluptates temporibus maiores.</p>
+                    <div class="d-flex justify-content-between">
+                      <div class="d-flex align-items-center">
+                        <h5><a href="#">ANM</a></h5>
+                        <p class="date">{{ doc.created }}</p>
+                      </div>
+                      <div class="reply-btn">
+                        <a href="#" class="btn-reply text-uppercase">Trả lời</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="comment-form">
+            <h4>Nhận xét</h4>
+            <form class="form-contact comment_form" action="#" id="commentForm">
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9" placeholder="Viết nhận xét"></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <button type="submit" class="button button-contactForm btn_1 boxed-btn">Gửi nhận xét</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="blog_right_sidebar">
+            <aside class="single_sidebar_widget search_widget">
+              <form action="{% url 'document_list' %}">
+                <div class="form-group">
+                  <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="q" placeholder="Tìm kiếm từ khóa" />
+                    <div class="input-group-append">
+                      <button class="btn" type="button"><i class="ti-search"></i></button>
+                    </div>
+                  </div>
+                </div>
+                <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit">Tìm kiếm</button>
+              </form>
+            </aside>
+            <aside class="single_sidebar_widget post_category_widget">
+              <h4 class="widget_title">Thể loại</h4>
+              <ul class="list cat-list">
+                {% for caregory in categories_template %}
+                  <li>
+                    <a href="{% url 'document_list' %}?c={{ caregory.slug }}" class="d-flex">{{ caregory }} ({{ caregory.subject__count }})</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </aside>
+            <aside class="single_sidebar_widget popular_post_widget">
+              <h3 class="widget_title">Bài gần đây</h3>
+              {% for subject in subjects_template %}
+                <div class="media post_item">
+                  <a href="{% url 'document_detail' %}?subject={{ subject.slug }}&chapter=&lesson=">
+                    <img style="width: 80px; height: 80px;"
+                      src="{% if subject.image %}
+                        {{ subject.image.url }}
+                      {% else %}
+                        {% static 'home/img/catagory/1.png' %}
+                      {% endif %}"
+                      alt="post" />
+                    <div class="media-body">
+                      <a href="{% url 'document_detail' %}?subject={{ subject.slug }}&chapter=&lesson="><h3>{{ subject.title }} ({{ subject.chapter__count }})</h3></a>
+                      <p>NEW!</p>
+                    </div>
+                  </a>
+                </div>
+              {% endfor %}
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================ Blog Area end ================= -->
+{% endblock %}
+{% block script %}
+  <script>
+    const documentGetTree = 'document/gettree/'
+    const documentLessonAudio = 'document/lesson/audio/'
+    const documentLesson = 'document/lesson/'
+  </script>
+
+  <!-- REACT LIBRARY -->
+  <script src="{% static 'libs/unpkg.com/react@18.2.0/umd/react.development.js' %}"></script>
+  <script src="{% static 'libs/unpkg.com/react-dom@18.2.0/umd/react-dom.development.js.js' %}"></script>
+  <script src="{% static 'libs/unpkg.com/@babel/standalone@7.22.10/babel.min.js' %}"></script>
+
+  <!-- AXIOS -->
+  <script src="{% static 'libs/axios/dist/axios.min.js' %}"></script>
+
+  <!-- REACT COMPONENT -->
+  <script src="{% static 'libs/unpkg.com/DOMPurify/dist/purify.min.js' %}" type="text/javascript"></script>
+  <script src="{% static 'utils/baseAxios.js' %}" type="text/javascript"></script>
+  <script src="{% static 'services/lesson.service.js' %}" type="text/javascript"></script>
+  <script src="{% static 'react/document-detail.js' %}" type="text/babel" data-type="module"></script>
+{% endblock %}

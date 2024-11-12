@@ -1,0 +1,29 @@
+{% extends 'admin/partials/sidebar.html' %}
+{% load i18n static %}
+{% block snippet %}
+  <div class="module">
+    <table>
+      <caption>
+        <a class="section">CÂU HỎI CHƯA TRẢ LỜI</a>
+      </caption>
+      <thead>
+        <tr>
+          <th>Câu hỏi</th>
+          <th>Thời gian</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for model in question %}
+          <tr class="row1">
+            <td class="th_custom">
+              <a href="{% url 'question_no_answer_detail' model.id %}">{{ model.question }}</a>
+            </td>
+            <td class="th_custom">
+              <a href="{% url 'question_no_answer_detail' model.id %}">{{ model.created }}</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

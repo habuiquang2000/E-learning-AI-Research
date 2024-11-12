@@ -1,0 +1,58 @@
+{% load static %}
+<header class="header-area">
+  <div id="sticky-header" class="main-header-area">
+    <div class="container-fluid ">
+      <div class="header_bottom_border">
+        <div class="row align-items-center">
+          <div class="col-xl-3 col-lg-2">
+            <a href="/">
+              <img class="logo" src="{% static 'home/img/logo.png' %}" alt="">
+            </a>
+          </div>
+          <div class="col-xl-6 col-lg-7">
+            <div class="main-menu  d-none d-lg-block">
+              <nav>
+                <ul id="navigation">
+                  <li><a href="{% url 'home' %}">Trang chủ</a></li>
+                  <li><a href="{% url 'consulting_chat' %}">Tư vấn</a></li>
+                  <li><a href="#"><span>Danh mục</span> <i class="ti-angle-down"></i></a>
+                    <ul class="submenu">
+                      {% for caregory in categories_template %}
+                      <li><a href="{% url 'document_list' %}?c={{caregory.slug}}">{{ caregory }}</a></li>
+                      {% endfor %}
+                    </ul>
+                  </li>
+                  <li><a href="{% url 'about' %}">Về viu</a></li>
+                  <li><a href="{% url 'contact' %}">Liên hệ</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+            <div class="Appointment">
+              {% if request.user.id %}
+              <div class="book_btn d-none d-lg-block" style="position: relative;">
+                <img
+                  {% if request.user.avatar %}
+                  src="{{ request.user.avatar.url }}"
+                  {% else %}
+                  src="/media/avatar/male.jpg"
+                  {% endif %}
+                  alt="" class="rounded-circle avatar">
+                <a href="{% url 'profile' %}">{{ request.user.username }}</a>
+              </div>
+              {% else %}
+              <div class="book_btn d-none d-lg-block">
+                <a href="{% url 'sign_in' %}">Đăng nhập</a>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="mobile_menu d-block d-lg-none"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+
+    {% comment %} {% endcomment %}
+    <!-- FACEBOOK -->
+    <meta property="og:title" content="San Roque 2014 Pollos" />
+    <meta property="og:description" content="Programa de fiestas" />
+    <meta property="og:image" content="http://anmquangw.ddns.net:5000/static/home/img/logo.png" />
+    {% comment %} {% endcomment %}
+    <!-- MS, fb & Whatsapp -->
+
+    <!-- MS Tile - for Microsoft apps -->
+    <meta name="msapplication-TileImage" content="http://anmquangw.ddns.net:5000/static/home/img/logo.png" />
+
+    <!-- fb & Whatsapp -->
+
+    <!-- Site Name, Title, and Description to be displayed -->
+    <meta property="og:site_name" content="The Rock Photo Studio" />
+    <meta property="og:title" content="The Rock Photo Studio in Florida" />
+    <meta property="og:description" content="The best photo studio for your events" />
+
+    <!-- Image to display -->
+    <!-- Replace «example.com/image01.jpg» with your own -->
+    <meta property="og:image" content="http://anmquangw.ddns.net:5000/static/home/img/logo.png" />
+
+    <!-- No need to change anything here -->
+    <meta property="og:type" content="website" />
+    <meta property="og:image:type" content="image/jpeg" />
+
+    <!-- Size of image. Any size up to 300. Anything above 300px will not work in WhatsApp -->
+    <meta property="og:image:width" content="300" />
+    <meta property="og:image:height" content="300" />
+
+    <!-- Website to visit when clicked in fb or WhatsApp -->
+    <meta property="og:url" content="http://anmquangw.ddns.net:5000" />
+    {% comment %} {% endcomment %}
+
+    <meta property="og:image" itemprop="image" content="http://anmquangw.ddns.net:5000/static/home/img/logo.png" />
+    {% comment %} {% endcomment %}
+    <meta property="og:site_name" content="sitename" />
+    <meta property="og:title" content="title" />
+    <meta property="og:description" content="description" />
+    <meta property="og:image" itemprop="image" content="http://anmquangw.ddns.net:5000/static/home/img/logo.png" />
+    <link itemprop="thumbnailUrl" href="http://anmquangw.ddns.net:5000/static/home/img/logo.png" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:updated_time" content="updatedtime" />
+    <meta property="og:locale" content="en_GB" />
+    {% comment %} {% endcomment %}
+
+    <title>Viu Tài Liệu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <link rel="icon" href="{% static 'home/img/logo.png' %}" />
+    <link rel="stylesheet" href="{% static 'home/css/owl.carousel.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'home/css/magnific-popup.css' %}" />
+    <link rel="stylesheet" href="{% static 'home/css/font-awesome.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'home/css/themify-icons.css' %}" />
+    <link rel="stylesheet" href="{% static 'home/css/nice-select.css' %}" />
+    <link rel="stylesheet" href="{% static 'home/css/flaticon.css' %}" />
+    <link rel="stylesheet" href="{% static 'home/css/gijgo.css' %}" />
+    <link rel="stylesheet" href="{% static 'home/css/animate.css' %}" />
+    <link rel="stylesheet" href="{% static 'home/css/slick.css' %}" />
+    <link rel="stylesheet" href="{% static 'home/css/slicknav.css' %}" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+    <link rel="stylesheet" href="{% static 'home/css/bootstrap.min.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'home/css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'signup/css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'listdoc/css/style.css' %}" />
+    <!-- <link rel="stylesheet" href="{% static 'home/css/responsive.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <style>
+      * {
+        scroll-behavior: smooth;
+      }
+    </style>
+
+    {% block css %}
+
+    {% endblock %}
+  </head>
+  <body>
+    <!--      [if lte IE 9]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]      -->
+
+    <!-- /header -->
+    {% include 'user/partials/header.html' %}
+    <!-- header/ -->
+
+    <!-- /content -->
+    {% block content %}
+      Tính năng đang phát triển
+    {% endblock %}
+    <!-- content/ -->
+
+    <!-- /footer -->
+    {% block footer %}
+      {% include 'user/partials/footer.html' %}
+    {% endblock %}
+    <!-- footer/ -->
+
+    <!-- link that opens popup -->
+    <!-- JS here -->
+    <script src="{% static 'home/js/vendor/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'home/js/jquery.scrollUp.min.js' %}"></script>
+    <script src="{% static 'home/js/jquery.slicknav.min.js' %}"></script>
+    <script src="{% static 'home/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'home/js/jquery.form.js' %}"></script>
+    <script src="{% static 'home/js/jquery.validate.min.js' %}"></script>
+    <script src="{% static 'home/js/jquery.counterup.min.js' %}"></script>
+    {% comment %} <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> {% endcomment %}
+    <script src="{% static 'home/js/vendor/modernizr-3.5.0.min.js' %}"></script>
+    <script src="{% static 'home/js/popper.min.js' %}"></script>
+    <script src="{% static 'home/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'home/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'home/js/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'home/js/ajax-form.js' %}"></script>
+    <script src="{% static 'home/js/waypoints.min.js' %}"></script>
+    <script src="{% static 'home/js/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'home/js/scrollIt.js' %}"></script>
+    <script src="{% static 'home/js/wow.min.js' %}"></script>
+    <script src="{% static 'home/js/nice-select.min.js' %}"></script>
+    <script src="{% static 'home/js/plugins.js' %}"></script>
+    <!-- <script src="{% static 'home/js/gijgo.min.js' %}"></script> -->
+    <script src="{% static 'home/js/slick.min.js' %}"></script>
+
+    <!-- contact js -->
+    <script src="https://raw.githubusercontent.com/scdoshi/jquery-ajaxchimp/master/jquery.ajaxchimp.min.js"></script>
+    {% comment %} <script src="{% static 'home/js/contact.js' %}"></script> {% endcomment %}
+    {% comment %} <script src="{% static 'home/js/mail-script.js' %}"></script> {% endcomment %}
+    <script src="{% static 'home/js/main.js' %}"></script>
+
+    {% block script %}
+
+    {% endblock %}
+  </body>
+</html>

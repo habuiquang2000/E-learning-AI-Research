@@ -1,0 +1,92 @@
+{% extends 'user/partials/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="spacing_head"></div>
+<div class="col-md-4 offset-md-4 mt-5">
+  {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+  <div id="form-message-warning mt-4"></div>
+  <div id="form-message-success"></div>
+  <form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+    <div class="form-group">
+      <label for="student_class">Lớp<span class="text-danger"> (*) Bắt buộc nhập</span></label>
+      {% if request.user.id %}
+      <input type="text" name="student_class" class="form-control" id="student_class" required="required"
+        value="{{ request.user.class_id.class_id }}">
+      {% else %}
+      <select name="student_class" class="form-control" id="student_class">
+        <option value="">Hãy lựa chọn lớp</option>
+        {% for class in student_class %}
+        <option value="{{ class.class_id }}">{{ class }}</option>
+        {% endfor %}
+      </select>
+      {% endif %}
+    </div>
+    <div class="form-group">
+      <label for="message">Ghi chú<span class="text-danger"> (*) Bắt buộc nhập</span></label>
+      <textarea class="form-control" name="message" id="message" cols="30" rows="7"
+        placeholder="Nhập ghi chú...">Bài thi kết thúc học phần.</textarea>
+    </div>
+    <hr>
+    <div class="custom-file">
+      <input type="file" class="custom-file-input" id="doc_file" name="doc_file" onchange="change(this)"
+        accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+      <label class="custom-file-label" for="doc_file">Tải lên báo cáo</label>
+    </div>
+    <div class="custom-file">
+      <input type="file" class="custom-file-input" id="image" name="image" onchange="change(this)"
+        accept="image/png, image/jpeg">
+      <label class="custom-file-label" for="image">Tải lên ảnh mô tả</label>
+    </div>
+    <div class="custom-file">
+      <input type="file" class="custom-file-input" id="file" name="file" onchange="change(this)">
+      <label class="custom-file-label" for="file">Tải lên bài làm</label>
+      <label style="font-size: 1.15rem;" for="file"><span class="text-danger"> (*) Lưu ý:</span></label>
+      <label style="font-size: 1rem;" for="file"><span class="text-danger"> - Đặt tên tệp tin theo định dạng "(Mã học
+          phần)_(Cơ sở)_(Mã sinh viên).(Định dạng tệp tin)".</span></label>
+      <label style="font-size: 1rem;" for="file"><span class="text-danger"> - Chỉ tải lên 1 file duy nhất, nếu có nhiều
+          tệp tin hay nhiều hoặc một thư mục cần nén thành 1 tệp tin định dạng "(Tên tệp tin).zip".</span></label>
+    </div>
+    <hr>
+    <hr>
+    <div class="form-group">
+      <label for="title">Tiêu đề</label>
+      <input type="text" name="title" class="form-control" id="title" placeholder="Nhập tiêu đề...">
+    </div>
+    <div class="form-group">
+      <label for="cate">Danh mục</label>
+      <select name="cate" class="form-control" id="cate">
+        <option value="1">Hãy lựa chọn danh mục</option>
+        {% for cate in sub_cate %}
+        <option value="{{ cate.id }}">{{ cate }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="shortDescription">Mô tả ngắn</label>
+      <textarea class="form-control" name="shortDescription" id="shortDescription" cols="30" rows="7"
+        placeholder="Nhập mô tả ngắn..."></textarea>
+    </div>
+    <div class="form-group">
+      {{ form.media }}
+      {{ form.as_p }}
+    </div>
+    <script>
+      function change(e) {
+        document.querySelector(`label[for="${e.id}"]`).textContent = e.files[0].name;
+      }
+    </script>
+    <hr>
+    <hr>
+    <button type="submit" class="btn btn-primary">Nộp bài</button>
+  </form>
+</div>
+<div class="spacing_foot"></div>
+{% endblock %}

@@ -1,0 +1,130 @@
+{% extends 'user/partials/base.html' %} {% load static %} {% block content %}
+  <div class="spacing_head"></div>
+  <!-- explorer_europe start -->
+  <div class="explorer_europe list_wrap">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xl-2 col-lg-3">
+          <div class="filter_wrap">
+            <div class="filter_main_wrap">
+              <div class="filter_inner">
+                <div class="form-group">
+                  <label for="categories">Danh mục</label>
+                  <ul class="cart-course-list">
+                    <li>
+                      <a href="{% url 'document_list' %}">Tất cả</a>
+                    </li>
+                    {% for caregory in categories_template %}
+                      <li>
+                        <a href="{% url 'document_list' %}?c={{ caregory.slug }}">{{ caregory }}</a>
+                      </li>
+                      {% empty %}
+                      <h1>Không có danh mục nào</h1>
+                    {% endfor %}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-10 col-lg-9">
+          <form action="{% url 'document_list' %}">
+            <label for="q">Tìm kiếm nội dung</label>
+            <div class="input_field">
+              <input value="{{ q }}" id="q" name="q" type="text" placeholder="Nội dung?" />
+              <button class="submit_btn" type="submit"><i class="fa fa-search"></i></button>
+            </div>
+          </form>
+          <h3 class="exp_title">{{ subjects_count }} kết quả đã được tìm thấy</h3>
+          <div class="row">
+            {% for subject in subjects %}
+              <div class="col-xl-3 col-lg-3 col-md-4">
+                <a href="{% url 'document_detail' %}?subject={{ subject.slug }}&chapter=&lesson=">
+                  <div class="single_explorer">
+                    <div class="thumb">
+                      <img class="des_img"
+                        src="{% if subject.image %}
+                          {{ subject.image.url }}
+                        {% else %}
+                          {% static 'home/img/catagory/1.png' %}
+                        {% endif %}"
+                        alt="{{ subject.title }}" />
+                    </div>
+                    <div class="explorer_bottom d-flex">
+                      <div class="explorer_info">
+                        <h4 style="
+                        line-height: 1.2em;
+                        height: 1.2em;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 1;
+                      ">{{ subject.title }}</h4>
+                        <div style="
+                        line-height: 1.2em;
+                        height: 3.6em;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 3;
+                      ">{{ subject.headline|safe }}</div>
+                        <ul>
+                          <li>
+                            <i class="fa fa-book"></i>{{ subject.chapter__count }}
+                            Chương
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              {% empty %}
+              <div class="text-center" style="width: 100%; font-size: 2em;">
+                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 640 512">
+                  <!-- ! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                  <path d="M425.7 256c-16.9 0-32.8-9-41.4-23.4L320 126l-64.2 106.6c-8.7 14.5-24.6 23.5-41.5 23.5-4.5 0-9-.6-13.3-1.9L64 215v178c0 14.7 10 27.5 24.2 31l216.2 54.1c10.2 2.5 20.9 2.5 31 0L551.8 424c14.2-3.6 24.2-16.4 24.2-31V215l-137 39.1c-4.3 1.3-8.8 1.9-13.3 1.9zm212.6-112.2L586.8 41c-3.1-6.2-9.8-9.8-16.7-8.9L320 64l91.7 152.1c3.8 6.3 11.4 9.3 18.5 7.3l197.9-56.5c9.9-2.9 14.7-13.9 10.2-23.1zM53.2 41L1.7 143.8c-4.6 9.2.3 20.2 10.1 23l197.9 56.5c7.1 2 14.7-1 18.5-7.3L320 64 69.8 32.1c-6.9-.8-13.5 2.7-16.6 8.9z" />
+                </svg>
+              </div>
+              <div class="text-center" style="width: 100%; ">
+                <h4>KHÔNG CÓ TÀI LIỆU NÀO</h4>
+              </div>
+            {% endfor %}
+          </div>
+          <div class="row">
+            <div class="col-xl-12">
+              <div class="page_nation text-center">
+                <ul>
+                  {% if False %}
+                    <li>
+                      <a href="?p=4"><i class="ti-angle-left"></i></a>
+                    </li>
+                  {% endif %}
+                  {% comment %}
+                  {% for i in range(subjects_count / limit) %}
+                    <li>
+                      <a href="?p={{ i }}">{{ i }}</a>
+                    </li>
+                    {% empty %}
+                    <li>
+                      <a href="?p=3">01</a>
+                    </li>
+                  {% endfor %} {% endcomment %}
+
+                  {% if False %}
+                    <li>
+                      <a href="?p=4"><i class="ti-angle-right"></i></a>
+                    </li>
+                  {% endif %}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- / explorer_europe start -->
+{% endblock %}

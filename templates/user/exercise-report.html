@@ -1,0 +1,37 @@
+{% extends "admin/sidebar.html" %}
+{% load i18n static %}
+{% block snippet %}
+<div class="module">
+  <table>
+    <caption>
+      <a class="section" title="{% blocktrans with name=app.name %}Models in the {{ name }} application{% endblocktrans %}">KHOA</a>
+    </caption>
+    <tbody>
+      {% for model in department %}
+      <tr class="row1">
+        <th class="th_custom"><a href="/teacher/documents/document/4/change/">{{ model.id }}</a></th>
+        <th class="th_custom">{{ model.name }}</th>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<div class="module">
+  <table>
+    <caption>
+      <a class="section"
+        title="{% blocktrans with name=app.name %}Models in the {{ name }} application{% endblocktrans %}">LỚP</a>
+    </caption>
+    <tbody>
+      {% for model in classmate %}
+      <tr class="row1">
+        <th class="th_custom"><a href="{% url 'class_details' model.class_id %}">{{ model.class_id }}</a></th>
+        <th class="th_custom"><a href="{% url 'class_details' model.class_id %}">{{ model.department.name }}</a></th>
+        <th class="th_custom"><a href="{% url 'class_details' model.class_id %}">{{ model.name }}</a></th>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

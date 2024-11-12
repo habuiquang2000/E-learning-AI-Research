@@ -1,0 +1,193 @@
+{% extends 'user/partials/base.html' %} {% load static %} {% block content %}
+<!-- slider_area_start -->
+<div class="slider_area">
+  <div class="single_slider d-flex align-items-center slider_bg_1">
+    <div class="container">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-xl-10">
+          <div class="slider_text text-center justify-content-center">
+            <p>Tìm kiến thức bạn muốn</p>
+            <h3>Viu kiến thức</h3>
+            <!--  -->
+            <!-- /search_form -->
+            <div class="search_form">
+              <form action="{% url 'document_list' %}">
+                <div class="row align-items-center">
+                  <!-- /search input -->
+                  <div class="col-xl-9 col-md-8">
+                    <div class="input_field">
+                      <input name="q" type="text" placeholder="Tìm kiếm" />
+                    </div>
+                  </div>
+                  <!-- search input/ -->
+                  <!-- /search submit -->
+                  <div class="col-xl-3 col-md-4">
+                    <div class="button_search">
+                      <button style="width: 100%;" class="boxed-btn2" type="submit">Tìm kiếm</button>
+                    </div>
+                  </div>
+                  <!-- search submit/ -->
+                </div>
+              </form>
+            </div>
+            <!-- search_form/ -->
+            <!--  -->
+            <div class="quality">
+              <ul>
+                {% for caregory in categories_template %}
+                <li>
+                  <button
+                    onclick="window.location.href = `{% url 'document_list' %}?c={{caregory.slug}}`"
+                  >
+                    {{ caregory }} ({{ caregory.subject__count }})
+                  </button>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- slider_area_end -->
+<div class="popular_catagory_area">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12 position-relative">
+        <div class="section_title text-center">
+          <p>Tài liệu mới nhất</p>
+        </div>
+        <div
+          class="section_title text-center position-absolute"
+          style="bottom: 0; right: 0"
+        >
+          <a href="{%  url 'document_list' %}">
+            Xem toàn bộ ->
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      {% for subject in subjects_template %}
+      <div class="col-xl-3 col-md-4 col-lg-3">
+        <a href="{%  url 'document_detail'  %}?subject={{ subject.slug }}&chapter=&lesson=">
+          <div class="single_catagory">
+            <div class="thumb">
+              <img
+                style="height: 12rem"
+                src="{% if subject.image %}{{subject.image.url }}{% else %}{% static 'home/img/catagory/1.png' %}{% endif %}"
+                alt=""
+              />
+            </div>
+            <div class="hover_overlay">
+              <div class="hover_inner">
+                <h4>{{ subject.title }}</h4>
+                <span>{{ subject.chapter__count }} Chương</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<hr
+  style="box-shadow: 1px 1px 1px #000; margin-left: 5rem; margin-right: 5rem"
+/>
+<!-- testimonial_area  -->
+<div class="testimonial_area">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="section_title mb-60 text-center">
+          <p>Reviews</p>
+          <h3>Mọi người nói gì ?</h3>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="testmonial_active owl-carousel">
+          <div class="single_carousel">
+            <div class="single_testmonial text-center">
+              <div class="quote">
+                <img src="{% static 'home/img/svg_icon/quote.svg' %}" alt="" />
+              </div>
+              <p>
+                Tôi đã tải rất nhiều tài liệu ở liondocx <br />
+                Tài liệu ở đây rất chất lượng.
+                <br />
+              </p>
+              <div class="testmonial_author">
+                <div class="thumb">
+                  <img
+                    src="{% static 'home/img/case/testmonial.png' %}"
+                    alt=""
+                  />
+                </div>
+                <h3>A N M</h3>
+                <span>CEO IT2programing</span>
+              </div>
+            </div>
+          </div>
+          <div class="single_carousel">
+            <div class="single_testmonial text-center">
+              <div class="quote">
+                <img src="{% static 'home/img/svg_icon/quote.svg' %}" alt="" />
+              </div>
+              <p>
+                Donec imperdiet congue orci consequat mattis. Donec rutrum
+                porttitor <br />
+                sollicitudin. Pellentesque id dolor tempor sapien feugiat
+                ultrices nec sed neque.
+                <br />
+                Fusce ac mattis nulla. Morbi eget ornare dui.
+              </p>
+              <div class="testmonial_author">
+                <div class="thumb">
+                  <img
+                    src="{% static 'home/img/case/testmonial.png' %}"
+                    alt=""
+                  />
+                </div>
+                <h3>Robert Thomson</h3>
+                <span>Business Owner</span>
+              </div>
+            </div>
+          </div>
+          <div class="single_carousel">
+            <div class="single_testmonial text-center">
+              <div class="quote">
+                <img src="{% static 'home/img/svg_icon/quote.svg' %}" alt="" />
+              </div>
+              <p>
+                Donec imperdiet congue orci consequat mattis. Donec rutrum
+                porttitor <br />
+                sollicitudin. Pellentesque id dolor tempor sapien feugiat
+                ultrices nec sed neque.
+                <br />
+                Fusce ac mattis nulla. Morbi eget ornare dui.
+              </p>
+              <div class="testmonial_author">
+                <div class="thumb">
+                  <img
+                    src="{% static 'home/img/case/testmonial.png' %}"
+                    alt=""
+                  />
+                </div>
+                <h3>Robert Thomson</h3>
+                <span>Business Owner</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /testimonial_area  -->
+
+{% endblock %}

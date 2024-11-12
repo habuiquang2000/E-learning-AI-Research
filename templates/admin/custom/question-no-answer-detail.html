@@ -1,0 +1,23 @@
+{% extends 'admin/partials/sidebar.html' %}
+{% load i18n static %}
+{% block snippet %}
+  <div class="module" id="changelist">
+    <form class="changelist_form" method="POST">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="question">Câu hỏi</label>
+        <input value="{{ question }}" disabled type="text" class="form-control" id="question" />
+      </div>
+      <div class="form-group">
+        <label for="answer">Trả lời</label>
+        <textarea name="answer" class="form-control" id="answer" rows="3" placeholder="Nhập câu trả lời"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="keyword">Từ khóa</label>
+        <textarea name="keyword" class="form-control" id="keyword" rows="3"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Trả lời</button>
+    </form>
+  </div>
+{% endblock %}

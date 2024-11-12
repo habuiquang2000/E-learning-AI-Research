@@ -1,0 +1,116 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block extrastyle %}{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static 'admin/css/dashboard.css' %}">{% endblock %}
+
+{% block coltype %}colMS{% endblock %}
+
+{% block bodyclass %}{{ block.super }} dashboard{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
+<div id="content-main">
+  <div class="row">
+    <div class="col-md-2 col-lg-2 col-xl-3 order-1 order-lg-1">
+      <nav id="sidebar" class="sidebar-wrapper">
+        <div class="sidebar-content">
+          <div class="sidebar-brand"></div>
+          <div class="sidebar-header">
+            <div class="user-pic">
+              <img style="width: 56px;height: 56px;" class="img-responsive img-rounded" {% if request.user.avatar %} src="{{ request.user.avatar.url }}"
+                {% else %} src="/media/avatar/user.jpg" {% endif %} alt="User picture">
+            </div>
+            <div class="user-info">
+              <span class="user-name">{{ request.user.first_name }}
+                <strong>{{ request.user.last_name }}</strong>
+              </span>
+              <span class="user-role">{{ request.user.username }}</span>
+              <span class="user-status">
+                <i class="fa fa-circle"></i>
+                <span>Hoạt động</span>
+              </span>
+            </div>
+          </div>
+          <!-- sidebar-header  -->
+
+          <div class="sidebar-menu">
+            <ul>
+              <li class="header-menu">
+                <a href="/teacher/" class="link_side_bar"><span>Về trang quản lý</span></a>
+              </li>
+              <li class="header-menu">
+                <a href="{% url 'question_no_answer_list' %}" class="link_side_bar"><span>Câu hỏi chờ đợi</span></a>
+              </li>
+              <li class="header-menu">
+                <a href="{% url 'answer_list' %}"><span>Huấn luyện trả lời</span></a>
+              </li>
+              <li class="header-menu">
+                <a href="{% url 'lesson_content_list' %}"><span>Nội dung bài học</span></a>
+              </li>
+            </ul>
+          </div>
+          <!-- sidebar-menu  -->
+        </div>
+        <!-- sidebar-content  -->
+        <div class="sidebar-footer">
+          <a href="#">
+            <i class="fa fa-bell"></i>
+            <span class="badge badge-pill badge-warning notification">3</span>
+          </a>
+          <a href="#">
+            <i class="fa fa-envelope"></i>
+            <span class="badge badge-pill badge-success notification">7</span>
+          </a>
+          <a href="#">
+            <i class="fa fa-cog"></i>
+            <span class="badge-sonar"></span>
+          </a>
+          <a href="#">
+            <i class="fa fa-power-off"></i>
+          </a>
+        </div>
+      </nav>
+    </div>
+    <div class="col-md-10 col-lg-6 col-xl-8 order-1 order-lg-2">
+      {% block snippet %}{% endblock %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block sidebar %}
+{% if page != 1 %}
+<div id="content-related">
+  <div class="module" id="recent-actions-module">
+    <h2>{% trans 'Thao tác' %}</h2>
+    <h3>{% trans 'Lịch sử thay đổi' %}</h3>
+    {% load log %}
+    {% get_admin_log 10 as admin_log for_user user %}
+    {% if not admin_log %}
+    <p>{% trans 'None available' %}</p>
+    {% else %}
+    <ul class="actionlist">
+      {% for entry in admin_log %}
+      <li
+        class="{% if entry.is_addition %}addlink{% endif %}{% if entry.is_change %}changelink{% endif %}{% if entry.is_deletion %}deletelink{% endif %}">
+        {% if entry.is_deletion or not entry.get_admin_url %}
+        {{ entry.object_repr }}
+        {% else %}
+        <a href="{{ entry.get_admin_url }}">{{ entry.object_repr }}</a>
+        {% endif %}
+        <br>
+        {% if entry.content_type %}
+        <span class="mini quiet">{% filter capfirst %}{{ entry.content_type }}{% endfilter %}</span>
+        {% else %}
+        <span class="mini quiet">{% trans 'Unknown content' %}</span>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+</div>
+{% endif %}
+{% endblock %}

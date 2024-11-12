@@ -1,0 +1,57 @@
+.logo {
+  width: 8rem;
+  height: 4rem;
+}
+
+.avatar {
+  background: #FFF;
+  width: 62px;
+  height: 62px;
+  top: -20px;
+  left: -32px;
+  position: absolute;
+  outline: none;
+  border-style: none;
+}
+
+.spacing_head {
+  padding-top: 7rem;
+  background: #001d38;
+}
+
+.spacing_foot {
+  padding-bottom: 3rem;
+}
+
+.img_profile {
+  width: 65%;
+  height: 20vw;
+}
+
+.form-outline {
+  width: 100%;
+}
+
+.success {
+  color: green
+}
+
+.error,
+.debug {
+  color: red
+}
+
+.warning {
+  color: yellow
+}
+
+.info {
+  color: #00ACED
+}
+.des_img{
+  height: 218px;
+}
+
+.w_full{
+  width: 100%;
+}

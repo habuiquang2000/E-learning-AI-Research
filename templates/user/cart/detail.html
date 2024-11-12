@@ -1,0 +1,96 @@
+{% extends 'user/partials/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- <section class="page-header-area">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <nav>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="/">
+                                <i class="fas fa-home"></i>
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#">Giỏ hàng</a></li>
+                    </ol>
+                </nav>
+                <h1 class="page-title">Giỏ hàng</h1>
+            </div>
+        </div>
+    </div>
+</section> -->
+
+
+<section class="cart-list-area" style="margin-top: 90px">
+  <div class="container">
+    {% with total_items=cart|length %}
+    {% if cart|length > 0 %}
+    <div class="row" id="cart_items_details">
+      <div class="col-lg-9">
+
+        <div class="in-cart-box">
+          <div class="title">{{ total_items }} Khóa học</div>
+          <div class="">
+            <ul class="cart-course-list">
+              {% for item in cart %}
+              {% with document=item.document %}
+              <li>
+                <div class="cart-course-wrapper">
+                  <div class="image">
+                    <a href="">
+                      <img src="{{ document.image.url }}" alt="" class="img-fluid">
+                    </a>
+                  </div>
+                  <div class="details">
+                    <a href="">
+                      <div class="name">{{ document.title }}</div>
+                    </a>
+                  </div>
+                  <div class="move-remove">
+                    <div>
+                      <form action="{% url 'cart:cart_remove' document.slug %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{ document.slug }}">
+                        <input type="submit" class="btn-success" value="Xoá">
+                      </form>
+                    </div>
+                    <!-- <div>Move to Wishlist</div> -->
+                  </div>
+                  <div class="price">
+                    <a href="">
+                      <div class="current-price">
+                        {{ document.get_text_price }}
+                      </div>
+                      <span class="coupon-tag">
+                        <i class="fas fa-tag"></i>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </li>
+              {% endwith %}
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="cart-sidebar">
+          <div class="total">Total:</div>
+          <div class="total-price">
+            <span id="total_price_of_checking_out">{{ cart.get_total_price_text }}</span> VNĐ
+          </div>
+          <a href="#" class="btn btn-primary btn-block checkout-btn">Thanh Toán
+          </a>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <div class="title">Cart is empty</div>
+    {% endif %}
+    {% endwith %}
+  </div>
+</section>
+{% endblock %}

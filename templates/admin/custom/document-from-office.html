@@ -1,0 +1,84 @@
+{% extends "admin/partials/sidebar.html" %}
+{% load i18n static %}
+{% block snippet %}
+<div id="document-office"></div>
+
+{% comment %} <form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+  <input type="hidden" value="0" name="type">
+  <div class="custom-file">
+    <input required type="file" class="custom-file-input" id="image" name="file" onchange="change(this)"
+      accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+    <label class="custom-file-label" for="image">Tải lên danh sách huấn luyện</label>
+  </div>
+  <script>
+    function change(e) {
+      document.querySelector(`label[for="${e.id}"]`).textContent = e.files[0].name;
+    }
+  </script>
+  <button type="submit" class="btn btn-primary">Tải lên</button>
+</form> {% endcomment %}
+
+{% comment %} <div class="module" id="changelist">
+  <div class="results">
+    <form action="" method="POST">{% csrf_token %}
+      <input type="hidden" value="1" name="type">
+      <input type="hidden" value="{{ count }}" name="count">
+      <table id="result_list">
+        <thead>
+        <tr>
+          <th scope="col" class="th_custom">
+            <div class="text">Nội dung
+            </div>
+            <div class="clear"></div>
+          </th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for classm in classmate %}
+          <tr class="row1">
+            <th class="th_custom"><input style="width: 100%;" type="text" name="id{{ forloop.counter0 }}" value="{{ classm.question }}"></th>
+            <td class="th_custom"><input style="width: 100%;" type="text" name="last_name{{ forloop.counter0 }}" value="{{ classm.answer.content }}">
+            </td>
+            <td class="th_custom"><input style="width: 100%;" type="text" name="class_id{{ forloop.counter0 }}" value="{{ classm.answer.keyword }}">
+            </td>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% if count %}
+      <button type="submit" class="btn btn-primary">Huấn luyện</button>
+      {% endif %}
+    </form>
+  </div>
+  {% if count %}
+  <p class="paginator">{{ count }} Kết quả</p>
+  {% elif messages %}
+  <ul class="messagelist">{% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message|capfirst }}</li>
+      {% endfor %}</ul>
+  {% endif %}
+</div> {% endcomment %}
+{% endblock %}
+{% block script %}
+  <script>
+    const documentCategoriesEndpoint = '/document/categories/'
+    const documentSubjectsEndpoint = '/document/subjects/'
+    const documentChaptersEndpoint = '/document/chapters/'
+
+    const documentFromWordEndpoint = '/document/from/word/'
+    const documentPostContentEndpoint = '/document/from/content/'
+  </script>
+
+  <!-- REACT LIBRARY -->
+  <script src="{% static 'libs/unpkg.com/react@18.2.0/umd/react.development.js' %}"></script>
+  <script src="{% static 'libs/unpkg.com/react-dom@18.2.0/umd/react-dom.development.js.js' %}"></script>
+  <script src="{% static 'libs/unpkg.com/@babel/standalone@7.22.10/babel.min.js' %}"></script>
+
+  {% comment %}AXIOS{% endcomment %}
+  <script src="{% static 'libs/axios/dist/axios.min.js' %}"></script>
+  <script src="{% static 'utils/baseAxios.js' %}" type="text/javascript"></script>
+  <script src="{% static 'services/document-from-office.service.js' %}"></script>
+
+  <script src="{% static 'react/document-from-office.js' %}" type="text/babel" data-type="module"></script>
+{% endblock %}

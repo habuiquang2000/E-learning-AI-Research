@@ -1,0 +1,16 @@
+*.pyc
+.idea
+.vscode
+*/*.pyc
+*/*/*.pyc
+*/migrations/*
+# ./src/static/*
+/__pycache__
+src/application/__pycache__/settings.cpython-35.pyc
+# */static/
+.DS_Store
+.env
+**/.DS_Store
+src/application/local_settings.py
+src/media
+.python-version

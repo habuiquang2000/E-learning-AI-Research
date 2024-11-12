@@ -1,0 +1,44 @@
+{% extends 'admin/partials/sidebar.html' %}
+{% load i18n static %}
+{% block snippet %}
+  <div class="module">
+    <table>
+      <caption>
+        <a class="section">CÂU HỎI CHƯA TRẢ LỜI</a>
+      </caption>
+      <tbody>
+        {% for model in question %}
+          <tr class="row1">
+            <th class="th_custom">
+              <a href="/teacher/documents/document/4/change/">{{ model.id }}</a>
+            </th>
+            <th class="th_custom">{{ model.name }}</th>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="module">
+    <table>
+      <caption>
+        <a class="section">TRẢ LỜI</a>
+      </caption>
+      <tbody>
+        {% for model in question %}
+          <tr class="row1">
+            <th class="th_custom">
+              <a href="{% url 'question_no_answer_detail' model.id %}">{{ model.id }}</a>
+            </th>
+            <th class="th_custom">
+              <a href="{% url 'question_no_answer_detail' model.id %}">{{ model.question.name }}</a>
+            </th>
+            <th class="th_custom">
+              <a href="{% url 'question_no_answer_detail' model.id %}">{{ model.name }}</a>
+            </th>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

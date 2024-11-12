@@ -1,0 +1,30 @@
+{% extends 'user/partials/base.html' %}
+{% load static %}
+
+{% block css %}
+  <style>
+    .img_bg {
+      background: url(/media/gv.jpg) center;
+      opacity: 0.8;
+    }
+    
+    .info__contact {
+      color: #000;
+      font-size: 1rem;
+      font-weight: bolder;
+      background: rgba(255, 255, 255, 0.3);
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <div class="spacing_head"></div>
+  <div class="img_bg">
+    <div class="col-lg-12 col-xl-11">
+      {% for teacher in teachers %}
+        <div class="info__contact mb-1">{{ teacher }}</div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="spacing_foot"></div>
+{% endblock %}
